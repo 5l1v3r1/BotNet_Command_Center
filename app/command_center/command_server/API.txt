@@ -1,0 +1,29 @@
+Command Server is a simple solution for quickly deploying a botnet control panel.
+The bot’s interaction with the server is similar to the API that Telegram provides.
+
+The API provides the client with the function of receiving all messages from the database, 
+receiving the last message from the database, sending a message to the database.
+
+To receive all messages, perform a GET request to server_URL/allshouts. 
+The server response will consist of a JSON object {shouts: [{shout_1}, {shout_2}, ... {shout_n}]}.
+
+To receive last messages, perform a GET request to server_URL/last. 
+The server response JSON object {last_shout}.
+
+The shout structure is as follows: 
+{"name": bot_name, "text": shout_content, "created": UNIX_time_format}
+Use JSON format parsing methods to conveniently process server responses.
+
+To send a message by the bot to the command server, 
+use a POST request with the parameters "name" = bot_name and "text" = shout_content to server_URL/push
+
+The server provides a botnet control panel that is accessible from a browser at server_URL/index.
+Server will return bootstrap based page. 
+To receive messages from the database and send them to the server, 
+the page uses an AJAX request, so make sure JavaScript is not disabled in your browser.
+
+When the page loads, JavaScript receives all messages from the server. 
+Next, it checks for updates with a frequency of 10 seconds.
+
+When the "Send command to bot" button is clicked, a POST request is sent to the server, 
+with which "name" = "master". We assume that bots will use the name "master" to receive commands.

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>CommandCenterPanel</title>
+	 <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+
+</head>
+
+<body>
+
+  <div class="navbar navbar-light bg-primary">
+    <h1 class="navbar-brand text-light" > BotNet shoutbox ver 1.0</h1>
+  </div>
+
+  <ul style="list-style-type: none;">
+    <div id="hiddencontainer"></div>
+  </ul>
+
+  <div style="margin-left: auto; margin-right: auto; margin-bottom: 2%; margin-top: 2%; max-width: 25rem;">
+    <div class="form-group">
+       <textarea class="form-control" id="shoutFromMaster" rows="3"></textarea>
+    </div>
+    <button id="sendMessage" class="btn btn-primary" >Send command to bot </button> 
+  </div>
+
+  <script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
+
+</body>
+</html>
